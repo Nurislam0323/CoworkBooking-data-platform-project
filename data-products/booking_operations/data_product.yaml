@@ -1,0 +1,37 @@
+id: booking_operations.client_booking_features
+name: Client Booking Features
+domain: booking_operations
+owner:
+  team: Операционный менеджмент CoworkBooking
+  contact: operations@coworkbooking.local
+description: Таблица признаков клиентов для анализа спроса, отмен, среднего чека и прогнозирования загрузки коворкинга.
+interfaces:
+  batch:
+    format: Apache Iceberg table
+    uri: s3://coworkbooking-lakehouse/gold/booking_operations/client_features
+    refresh: daily at 03:00 UTC
+  feature_store:
+    registry: feature_store/feast/registry.db
+    entities: [client]
+  semantic:
+    cube: BookingOperations
+schema:
+  primary_key: [client_id]
+  columns:
+    - {name: client_id, type: string, nullable: false}
+    - {name: segment, type: string, nullable: false}
+    - {name: city, type: string, nullable: false}
+    - {name: avg_booking_value_30d, type: double, nullable: false}
+    - {name: bookings_30d, type: integer, nullable: false}
+    - {name: cancelled_booking_rate_30d, type: double, nullable: false}
+    - {name: total_revenue_30d, type: double, nullable: false}
+    - {name: event_timestamp, type: timestamp, nullable: false}
+sla:
+  availability: "99.5% monthly"
+  freshness: "Data available by 04:00 UTC daily"
+  incident_response: "P1 within 30 minutes, P2 within 4 hours"
+quality_metrics:
+  duplicate_client_id: "0"
+  null_required_fields: "0"
+  avg_booking_value_range: "avg_booking_value_30d >= 0"
+  freshness_lag_hours: "<= 4"

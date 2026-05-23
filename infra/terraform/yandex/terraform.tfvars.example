@@ -1,0 +1,7 @@
+cloud_id = "b1gxxxxxxxxxxxxxxxxx"
+folder_id = "b1gxxxxxxxxxxxxxxxxx"
+zone = "ru-central1-a"
+project = "coworkbooking-data-platform"
+ssh_public_key = "ssh-ed25519 AAAA..."
+service_account_id = "aje..."
+kafka_user_password = "CHANGE_ME_STRONG_PASSWORD"

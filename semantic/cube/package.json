@@ -1,0 +1,1 @@
+{"scripts":{"dev":"cubejs-server"},"dependencies":{"@cubejs-backend/clickhouse-driver":"^0.36.0"}}

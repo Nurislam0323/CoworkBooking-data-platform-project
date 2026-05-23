@@ -1,0 +1,53 @@
+ЗАПУСК ПРОЕКТА НА ЗАЩИТЕ
+
+Фраза перед запуском:
+Я сделал автоматический сценарий run_local_demo.ps1: он поднимает Docker-стенд, прогоняет данные, делает quality checks, lineage, Kafka events, ClickHouse aggregates и dashboard.
+
+1. Открыть Docker Desktop, дождаться Running.
+
+2. PowerShell:
+cd C:\Users\e_vla\Desktop\Руденкова\ПРОЕКТ
+powershell -ExecutionPolicy Bypass -File .\scripts\run_local_demo.ps1
+
+Успешный результат:
+LOCAL DEMO PASS
+
+3. Открыть результаты:
+start .\data\runtime\dashboard\index.html
+start .\data\runtime\reports\LOCAL_DEMO_SUMMARY.md
+start .\docs\PROJECT_EXPLAINED.md
+start .\PROJECT_FILE_TREE.pdf
+start .\presentation\coworkbooking_data_platform_defense.pptx
+
+4. Подтвердить работоспособность командами:
+
+docker compose -p coworkbooking-demo -f docker-compose.local.yml ps
+
+docker compose -p coworkbooking-demo -f docker-compose.local.yml exec -T clickhouse clickhouse-client --query "SELECT count() FROM coworkbooking.space_occupancy_5m"
+
+Ожидаемо:
+109
+
+docker compose -p coworkbooking-demo -f docker-compose.local.yml exec -T clickhouse clickhouse-client --query "SELECT segment, round(sum(total_price), 0), countDistinct(client_id) FROM coworkbooking.booking_revenue GROUP BY segment ORDER BY segment"
+
+Ожидаемо:
+corporate   7200   1
+freelancer  1350   1
+startup     2400   1
+student     700    1
+
+docker compose -p coworkbooking-demo -f docker-compose.local.yml exec -T kafka kafka-run-class kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic coworkbooking.workplace_events
+
+Ожидаемо:
+coworkbooking.workplace_events:0:180
+
+5. Локальные адреса:
+MinIO: http://localhost:9001
+login: minioadmin
+password: minioadmin
+
+ClickHouse: http://localhost:8123
+ожидаемо: Ok.
+
+6. Остановить после показа:
+powershell -ExecutionPolicy Bypass -File .\scripts\stop_local_demo.ps1

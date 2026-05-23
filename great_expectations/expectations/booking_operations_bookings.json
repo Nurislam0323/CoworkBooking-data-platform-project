@@ -1,0 +1,11 @@
+{
+  "expectation_suite_name": "booking_operations_bookings",
+  "expectations": [
+    {"expectation_type": "expect_column_values_to_be_unique", "kwargs": {"column": "booking_id"}},
+    {"expectation_type": "expect_column_values_to_not_be_null", "kwargs": {"column": "client_id"}},
+    {"expectation_type": "expect_column_values_to_be_between", "kwargs": {"column": "total_price", "min_value": 0}},
+    {"expectation_type": "expect_column_values_to_be_between", "kwargs": {"column": "hours", "min_value": 0.1}},
+    {"expectation_type": "expect_column_values_to_be_in_set", "kwargs": {"column": "status", "value_set": ["ACTIVE", "CANCELLED", "COMPLETED"]}}
+  ],
+  "meta": {"domain": "booking_operations", "layer": "raw"}
+}

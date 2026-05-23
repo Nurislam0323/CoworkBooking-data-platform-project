@@ -1,0 +1,24 @@
+#cloud-config
+package_update: true
+packages:
+  - docker.io
+  - docker-compose-plugin
+  - git
+users:
+  - name: ubuntu
+    groups: docker
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+write_files:
+  - path: /opt/platform/.env
+    permissions: "0600"
+    content: |
+          S3_BUCKET=${s3_bucket}
+      AWS_ACCESS_KEY_ID=${s3_access_key}
+      AWS_SECRET_ACCESS_KEY=${s3_secret_key}
+      S3_ENDPOINT=https://storage.yandexcloud.net
+      KAFKA_BOOTSTRAP_SERVERS=${kafka_bootstrap}:9091
+runcmd:
+  - mkdir -p /opt/platform
+  - git clone ${project_repository} /opt/platform/repo || true
+      - cd /opt/platform/repo && cp /opt/platform/.env .env && docker compose -p coworkbooking-platform up -d minio kafka postgres airflow-init airflow-webserver airflow-scheduler

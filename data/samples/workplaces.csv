@@ -1,0 +1,5 @@
+workplace_id,space_id,zone,workplace_type,capacity,price_per_hour
+W-101,SP-01,Open Space,SINGLE,1,450
+MR-201,SP-01,Meeting Zone,MEETING_ROOM,6,1200
+W-301,SP-02,Quiet Zone,SINGLE,1,350
+TEAM-1,SP-02,Team Zone,TEAM_ROOM,8,1800

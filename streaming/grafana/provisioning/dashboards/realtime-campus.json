@@ -1,0 +1,21 @@
+{
+  "title": "Coworking Realtime Occupancy",
+  "schemaVersion": 39,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "People delta by coworking zone, rolling 5 minutes",
+      "targets": [
+        {
+          "rawSql": "SELECT window_start AS time, concat(space_id, ' / ', zone) AS zone, sum(people_delta) AS value FROM coworkbooking.space_occupancy_5m GROUP BY time, zone ORDER BY time"
+        }
+      ],
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}

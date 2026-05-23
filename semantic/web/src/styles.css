@@ -1,0 +1,8 @@
+body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #f8fafc; color: #0f172a; }
+main { max-width: 1120px; margin: 0 auto; padding: 32px; }
+header { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 28px; }
+h1 { margin: 0; font-size: 34px; line-height: 1.15; }
+p { margin: 0 0 8px; color: #64748b; font-weight: 600; }
+button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #cbd5e1; background: white; color: #0f172a; padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+.toolbar { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 14px 0; margin-bottom: 24px; color: #475569; }
+.toolbar strong { color: #0f172a; }

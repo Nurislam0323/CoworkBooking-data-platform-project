@@ -1,0 +1,16 @@
+domains:
+  booking_operations:
+    owner: Операционный менеджер CoworkBooking
+    purpose: Бронирования, отмены, подтверждения, оплата и выручка по рабочим местам.
+    sources: [booking_api, booking_export_csv, client_registry_csv]
+    products: [booking_operations_raw, client_booking_features]
+  space_operations:
+    owner: Управляющий коворкингом
+    purpose: Загрузка пространств, рабочие места, вход/выход клиентов, использование переговорных.
+    sources: [workplace_events_kafka, workplace_registry_csv]
+    products: [space_utilization_realtime]
+  customer_engagement:
+    owner: Менеджер по клиентскому опыту
+    purpose: Активность клиентов, история бронирований, сегменты, удержание и уведомления.
+    sources: [booking_activity_api, notification_events, support_requests]
+    products: [customer_engagement_score_daily]
