@@ -63,8 +63,9 @@ coworkbooking.workplace_events:0:180
 
 - Dashboard: `data/runtime/dashboard/index.html`
 - Summary: `data/runtime/reports/LOCAL_DEMO_SUMMARY.md`
-- Project explanation: `docs/PROJECT_EXPLAINED.md`
-- File tree PDF: `PROJECT_FILE_TREE.pdf`
+- Architecture: `docs/architecture.md`
+- Deployment guide: `docs/deployment.md`
+- ADR: `docs/adr/ADR-001-cloud-lakehouse-yandex.md`
 - Presentation: `presentation/coworkbooking_data_platform_defense.pptx`
 
 MinIO:
@@ -117,7 +118,7 @@ requirements-dev.txt
 
 - `data/` - входные данные и runtime-артефакты.
 - `data-products/` - Data Product по домену бронирований.
-- `docs/` - документация, ADR, runbook, пояснения.
+- `docs/` - документация по ТЗ: architecture, domains, deployment, lineage, monitoring, ADR.
 - `infra/terraform/` - Infrastructure as Code.
 - `orchestration/airflow/` - Airflow DAG и Dockerfile.
 - `lakehouse/spark/` - Spark/PySpark трансформации.
